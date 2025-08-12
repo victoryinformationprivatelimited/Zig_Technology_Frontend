@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 type MenuItem = {
   name: string;
@@ -12,11 +13,10 @@ type MenuItem = {
   ) => void;
 };
 
-
-
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolling, setScrolling] = useState(false);
+  const router = useRouter();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -27,16 +27,45 @@ const Navbar = () => {
     e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>
   ) => {
     e.preventDefault();
-    const aboutSection = document.getElementById("about-us-section");
-    if (aboutSection) {
-      aboutSection.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
+
+    // Check if we're on the home page
+    if (window.location.pathname === "/") {
+      // If on home page, scroll to the section
+      const aboutSection = document.getElementById("about-us-section");
+      if (aboutSection) {
+        aboutSection.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    } else {
+      // If on another page, navigate to home page with hash
+      router.push("/#about-us-section");
     }
     setIsOpen(false);
   };
 
+  // Handle smooth scroll to Distribution section
+  const handleDistributionClick = (
+    e: React.MouseEvent<HTMLButtonElement | HTMLAnchorElement>
+  ) => {
+    e.preventDefault();
+
+    if (window.location.pathname === "/pages/production") {
+      // If on production page, scroll to distribution section
+      const distributionSection = document.getElementById("distribution");
+      if (distributionSection) {
+        distributionSection.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    } else {
+      // Navigate to production page
+      router.push("/pages/production#distribution");
+    }
+    setIsOpen(false);
+  };
 
   const menuItems: MenuItem[] = [
     { name: "Home", path: "/", type: "link" },
@@ -48,9 +77,14 @@ const Navbar = () => {
     },
     { name: "Our Brands", path: "/pages/brands", type: "link" },
     { name: "Production", path: "/pages/production", type: "link" },
+    {
+      name: "Distribution",
+      path: "#distribution",
+      type: "scroll",
+      onClick: handleDistributionClick,
+    },
     { name: "Contact Us", path: "/pages/contact", type: "link" },
   ];
-
 
   useEffect(() => {
     const handleScroll = () => {
@@ -66,18 +100,55 @@ const Navbar = () => {
     };
   }, []);
 
+  // Handle scroll to section after navigation
+  useEffect(() => {
+    const handleHashScroll = () => {
+      const hash = window.location.hash;
+      if (hash) {
+        // Small delay to ensure the page has loaded
+        setTimeout(() => {
+          const element = document.getElementById(hash.substring(1));
+          if (element) {
+            element.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        }, 100);
+      }
+    };
+
+    // Check for hash on initial load
+    handleHashScroll();
+
+    // Listen for hash changes
+    window.addEventListener("hashchange", handleHashScroll);
+
+    return () => {
+      window.removeEventListener("hashchange", handleHashScroll);
+    };
+  }, []);
+
   return (
-    <nav
-      className={` z-100 fixed top-0 left-0 w-full transition-all duration-300 ${scrolling ? "bg-blue-500 opacity-70" : "bg-transparent"
-        }`}
-    >
+    <nav className="z-100 fixed top-0 left-0 w-full transition-all duration-300 ">
+      {scrolling && (
+        <video
+          className="absolute top-0 left-0 w-full h-full object-cover -z-10"
+          src="/images/Scroll_Video.mp4"
+          autoPlay
+          loop
+          muted
+          playsInline
+        />
+      )}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link href="/" className="flex-shrink-0">
               <div
-                className={`relative bg-white rounded-bl-3xl rounded-br-3xl ${scrolling ? "opacity-0" : ""
-                  }  items-center justify-center hidden sm:flex sm:w-48 sm:h-16 md:w-64 md:h-20 lg:w-80 lg:h-24`}
+                className={`relative bg-white rounded-bl-3xl rounded-br-3xl ${
+                  scrolling ? "opacity-0" : ""
+                }  items-center justify-center hidden sm:flex sm:w-32 sm:h-16 md:w-36 md:h-20 lg:w-64 lg:h-24`}
               >
                 <Image
                   src="/images/Web site images-04.png"
@@ -108,12 +179,12 @@ const Navbar = () => {
                       viewBox="0 0 24 24"
                       xmlns="http://www.w3.org/2000/svg"
                     >
-                      <path
+                      {/* <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
                         strokeWidth={2}
                         d="M19 9l-7 7-7-7"
-                      />
+                      /> */}
                     </svg>
                   </button>
                 ) : (
@@ -129,12 +200,12 @@ const Navbar = () => {
                       viewBox="0 0 24 24"
                       xmlns="http://www.w3.org/2000/svg"
                     >
-                      <path
+                      {/* <path
                         strokeLinecap="round"
                         strokeLinejoin="round"
                         strokeWidth={2}
                         d="M19 9l-7 7-7-7"
-                      />
+                      /> */}
                     </svg>
                   </Link>
                 )}

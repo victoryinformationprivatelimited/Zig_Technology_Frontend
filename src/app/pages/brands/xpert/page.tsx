@@ -3,12 +3,17 @@ import Image from "next/image";
 import Link from "next/link";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import pro1 from "../../../../../public/images/products/pro1.png";
-import pro2 from "../../../../../public/images/products/pro2.png";
-import pro3 from "../../../../../public/images/products/pro3.png";
-import pro4 from "../../../../../public/images/products/pro4.png";
+import pro1 from "../../../../../public/images/products/XPERT/Cables.png";
+import pro2 from "../../../../../public/images/products/XPERT/Chargers.png";
+import pro3 from "../../../../../public/images/products/XPERT/Power Banks.png";
 
 export default function XPert() {
+    const productCategories = [
+        { image: pro1, name: "Cables" },
+        { image: pro2, name: "Chargers" },
+        { image: pro3, name: "Power Banks" },
+    ];
+
     return (
         <div className="min-h-screen flex flex-col">
             <Head>
@@ -23,37 +28,41 @@ export default function XPert() {
 
             <main className="flex-grow">
                 {/* Hero Section */}
-                <div className="bg-blue-900 relative ">
+                <div className="relative">
                     {/* Background circuit pattern */}
-                    <div className="absolute inset-0 z-0 opacity-30">
-                        <Image
-                            src="/images/production_monitoring.jpg"
-                            alt="Circuit Board Background"
-                            fill
-                            className="object-cover"
-                            priority
+                    <div className="relative w-full h-full overflow-hidden bg-white">
+                        <video
+                            src="/images/Commonbanner.mp4"
+                            className="w-full h-[80%] object-fill"
+                            autoPlay
+                            loop
+                            muted
+                            playsInline
+                            controls={false}
                         />
+                        <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center z-10">
+                            <Image
+                                src="/images/Web site images-03.png"
+                                alt="Vision Icon"
+                                height={350}
+                                width={350}
+                                className="object-contain mx-auto"
+                            />
+                        </div>
                     </div>
-                    <div className="relative z-10 container mx-auto px-4 py-20 text-start text-white">
-                        {/* Welcome text */}
-                        <h1 className="text-4xl sm:text-5xl font-bold mb-4">OUR BRANDS</h1>
 
-                        {/* Placeholder text - replace with actual content */}
-                        <p className="max-w-3xl text-lg">
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-                            nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam
-                            erat volutpat. Ut wisi enim ad minim veniam, quis nostrud
-                        </p>
-                    </div>
                 </div>
 
-                <div className="bg-white py-6">
+                <div className="bg-gray-50 py-3">
                     <div className="container mx-auto px-4">
                         {/* Breadcrumb */}
                         <nav aria-label="Breadcrumb" className="p-5">
                             <ol className="flex space-x-2">
                                 <li>
-                                    <Link href="/" className="text-blue-500 hover:underline">
+                                    <Link
+                                        href="/"
+                                        className="text-blue-600 hover:underline hover:text-pink-600 transition-colors"
+                                    >
                                         Home
                                     </Link>
                                 </li>
@@ -63,7 +72,7 @@ export default function XPert() {
                                 <li>
                                     <Link
                                         href="/pages/brands"
-                                        className="text-blue-500 hover:underline"
+                                        className="text-blue-600 hover:underline hover:text-pink-600 transition-colors"
                                     >
                                         Our Brands
                                     </Link>
@@ -72,7 +81,10 @@ export default function XPert() {
                                     <span className="text-blue-500">/</span>
                                 </li>
                                 <li>
-                                    <Link href="#" className="text-blue-500 hover:underline">
+                                    <Link
+                                        href="#"
+                                        className="text-pink-600 hover:underline hover:text-blue-600 transition-colors"
+                                    >
                                         X-Pert
                                     </Link>
                                 </li>
@@ -80,111 +92,88 @@ export default function XPert() {
                         </nav>
                         {/* Heading */}
                         <div className="flex flex-col items-center">
-                            <div className="mt-8 h-[3px] w-11/12 bg-blue-200 rounded-md mx-auto"></div>
+                            <div className="mt-8 h-[3px] w-11/12 bg-gradient-to-r from-blue-400 via-pink-400 to-blue-400 rounded-md mx-auto"></div>
                         </div>
 
                         {/* brands */}
                         <div className="flex flex-col md:flex-row justify-between mt-10">
                             {/* Vertical line */}
-                            <div className="w-0.5 bg-gray-200 mx-2 h-1vh mt-10"></div>
+                            <div className="w-0.5 bg-gradient-to-b from-pink-400 to-blue-400 mx-2 h-1vh mt-10"></div>
                             {/* X-PERT */}
                             <div className="flex-1 text-center p-6 justify-center mt-[-50]">
-                                <div className="flex justify-start mb-15">
-                                    <div className="w-2xl h-48  relative">
-                                        <Image
-                                            src="/images/Web site images-03.png"
-                                            alt="Vision Icon"
-                                            height={300}
-                                            width={300}
-                                            className="object-contain"
-                                        />
-                                    </div>
-                                </div>
-                                <p className="text-gray-600 p-4 max-w-auto text-justify">
-                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
-                                    diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-                                    aliquam erat volutpat. Ut wisi enim ad minim veniam, quis
-                                    nostrud Lorem ipsum dolor sit amet, consectetuer adipiscing
-                                    elit, sed diam nonummy nibh euismod tincidunt ut laoreet
-                                    dolore magna aliquam erat volutpat. Ut wisi enim ad minim
-                                    veniam, quis nostrud Lorem ipsum dolor sit amet, consectetuer
-                                    adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
-                                    laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad
-                                    minim veniam, quis nostrud Lorem ipsum dolor sit amet,
-                                    consectetuer adipiscing elit, sed diam nonummy nibh euismod
-                                    tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut
-                                    wisi enim ad minim veniam, quis nostrud Lorem ipsum dolor sit
-                                    amet, consectetuer adipiscing elit, sed diam nonummy nibh
-                                    euismod tincidunt ut laoreet dolore magna aliquam erat
-                                    volutpat. Ut wisi enim ad minim veniam, quis nostrud Lorem
-                                    ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
-                                    nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam
-                                    erat volutpat. Ut wisi enim ad minim veniam, quis nostrud
-                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
-                                    diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-                                    aliquam erat volutpat. Ut wisi enim ad minim veniam, quis
-                                    nostrud Lorem ipsum dolor sit amet, consectetuer adipiscing
-                                    elit, sed diam nonummy nibh euismod tincidunt ut laoreet
-                                    dolore magna aliquam erat volutpat. Ut wisi enim ad minim
-                                    veniam, quis nostrud
-                                </p>
 
-                                <p className="text-gray-600 p-4 max-w-auto text-justify">
-                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
-                                    diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-                                    aliquam erat volutpat. Ut wisi enim ad minim veniam, quis
-                                    nostrud Lorem ipsum dolor sit amet, consectetuer adipiscing
-                                    elit, sed diam nonummy nibh euismod tincidunt ut laoreet
-                                    dolore magna aliquam erat volutpat. Ut wisi enim ad minim
-                                    veniam, quis nostrud Lorem ipsum dolor sit amet, consectetuer
-                                    adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
-                                    laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad
-                                    minim veniam, quis nostrud Lorem ipsum dolor sit amet,
-                                    consectetuer adipiscing elit, sed diam nonummy nibh euismod
-                                    tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut
-                                    wisi enim ad minim veniam, quis nostrud
-                                </p>
-                                <p className="text-gray-600 p-4 max-w-auto text-justify">
-                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed
-                                    diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-                                    aliquam erat volutpat. Ut wisi enim ad minim veniam, quis
-                                    nostrud Lorem ipsum dolor sit amet, consectetuer adipiscing
-                                    elit, sed diam nonummy nibh euismod tincidunt ut laoreet
-                                    dolore magna aliquam erat volutpat. Ut wisi enim ad minim
-                                    veniam, quis nostrud Lorem ipsum dolor sit amet, consectetuer
-                                    adipiscing elit, sed diam nonummy nibh euismod tincidunt ut
-                                    laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad
-                                    minim veniam, quis nostrud Lorem ipsum dolor sit amet,
-                                    consectetuer adipiscing elit, sed diam nonummy nibh euismod
-                                    tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut
-                                    wisi enim ad minim veniam, quis nostrud
-                                </p>
+
+                                <div className="bg-white rounded-lg shadow-md border-l-4 border-pink-500 p-6 mb-6">
+                                    <p className="text-gray-700 max-w-auto text-justify leading-relaxed">
+                                        XPERT is the performance-driven mobile accessory line from
+                                        Zigo Technology (Pvt) Ltd., engineered for users who refuse
+                                        to compromise on speed, safety, and style. Every charger,
+                                        cable, power bank, and audio device is built on rigorous R
+                                        &D and certified components, ensuring rapid charging, stable
+                                        connectivity, and long-life durability that stand up to
+                                        everyday wear—whether you’re commuting across town or
+                                        crossing borders for business.
+                                    </p>
+                                </div>
+
+                                <div className="bg-white rounded-lg shadow-md border-r-4 border-blue-500 p-6 mb-6">
+                                    <p className="text-gray-700 max-w-auto text-justify leading-relaxed">
+                                        Beyond raw specs, XPERT products reflect a design language
+                                        that blends minimal aesthetics with practical ergonomics.
+                                        Sleek anodized finishes, reinforced braided cables, and
+                                        compact, travel-friendly form factors make each piece as
+                                        visually appealing as it is functional, while smart-chip
+                                        protection shields both devices and users from over-voltage,
+                                        overheating, and short circuits.
+                                    </p>
+                                </div>
+
+                                <div className="bg-white rounded-lg shadow-md border-l-4 border-pink-500 p-6 mb-6">
+                                    <p className="text-gray-700 max-w-auto text-justify leading-relaxed">
+                                        From flagship-grade USB-C PD chargers to Bluetooth earphones
+                                        tuned for crisp highs and punchy bass, XPERT’s portfolio is
+                                        continually expanding alongside new mobile standards. Backed
+                                        by Zigo’s country-wide service network and stringent quality
+                                        assurance, the brand promises not just accessories, but a
+                                        reliable ecosystem that empowers professionals, gamers, and
+                                        everyday users to stay effortlessly connected—anytime,
+                                        anywhere.
+                                    </p>
+                                </div>
+
                                 <div>
                                     <div className="flex flex-col items-center">
-                                        <div className="p-20">
-                                            <h1 className="text-gray-500 font-bold text-4xl uppercase">
-                                                Products
+                                        <div className="p-10">
+                                            <h1 className="text-gray-600 font-bold text-4xl uppercase relative">
+                                                <span className="text-pink-500">PRO</span>
+                                                <span className="text-pink-500">DUCT</span>
+                                                <span className="text-blue-500"> CATEGORIES</span>
+                                                <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-20 h-1 bg-gradient-to-r from-pink-400 to-blue-400 rounded"></div>
                                             </h1>
                                         </div>
                                     </div>
                                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 px-6 pb-12">
-                                        {[pro1, pro2, pro3, pro4, pro3, pro2].map(
+                                        {productCategories.map(
                                             (product, index) => (
                                                 <div
                                                     key={index}
-                                                    className="bg-gray-200 shadow-md rounded-xl overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-lg"
+                                                    className="bg-white shadow-md rounded-xl overflow-hidden transform transition duration-300 hover:scale-105 hover:shadow-xl border-t-4 border-gradient-to-r from-pink-400 to-blue-400 group"
+                                                    style={{
+                                                        borderImage:
+                                                            "linear-gradient(to right, #f472b6, #60a5fa) 1",
+                                                    }}
                                                 >
-                                                    <div className="relative w-full h-64">
+                                                    <div className="relative w-full h-64 bg-gradient-to-br from-pink-50 to-blue-50 group-hover:from-pink-100 group-hover:to-blue-100 transition-all duration-300">
                                                         <Image
-                                                            src={product}
-                                                            alt={`product ${index + 1}`}
+                                                            src={product.image}
+                                                            alt={product.name}
                                                             layout="fill"
                                                             className="object-contain p-6"
                                                         />
                                                     </div>
-                                                    <div className="p-4 text-center">
-                                                        <h3 className="text-lg font-semibold text-gray-700">
-                                                            Product {index + 1}
+                                                    <div className="p-4 text-center bg-gradient-to-r from-pink-50 to-blue-50">
+                                                        <h3 className="text-lg font-semibold text-gray-700 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-pink-600 group-hover:to-blue-600 transition-all duration-300">
+                                                            {product.name}
                                                         </h3>
                                                     </div>
                                                 </div>
@@ -193,7 +182,7 @@ export default function XPert() {
                                     </div>
                                 </div>
                             </div>
-                            <div className="w-0.5 bg-gray-200 mx-2 h-1vh mt-10"></div>
+                            <div className="w-0.5 bg-gradient-to-b from-blue-400 to-pink-400 mx-2 h-1vh mt-10"></div>
                         </div>
                     </div>
                 </div>

@@ -3,11 +3,20 @@ import Head from "next/head";
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { useRouter } from "next/navigation";
 import Link from "next/link";
+import { useEffect } from "react";
+import SriLankaMap from "@/components/SriLankaMap";
+import UaeMap from "@/components/UaeMap";
 
 export default function Production() {
-  const router = useRouter();
+  useEffect(() => {
+    if (window.location.hash) {
+      const element = document.querySelector(window.location.hash);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  }, []);
   return (
     <div className="min-h-screen flex flex-col">
       <Head>
@@ -23,39 +32,23 @@ export default function Production() {
 
       <main className="flex-grow">
         {/* Hero Section */}
-        <div className="bg-blue-900 relative">
+        <div className="relative">
           {/* Background manufacturing image */}
-          <div className="absolute inset-0 z-0 h-70 sm:h-100">
-            <Image
-              src="/images/production_background.webp"
-              alt="Manufacturing Floor Background"
-              fill
-              className="object-cover"
-              priority
+          <div className="relative w-full h-full overflow-hidden bg-white">
+            <video
+              src="/images/ProductiontopBanner.mp4"
+              className="w-full h-[80%] object-fill"
+              autoPlay
+              loop
+              muted
+              playsInline
+              controls={false}
             />
-          </div>
-
-          <div className="relative z-10 container mx-auto px-4 sm:px-8 md:px-16 py-8 sm:py-12 md:py-16 text-start text-white">
-            {/* Header text */}
-            <h1 className="text-2xl sm:text-4xl md:text-5xl font-bold mb-4 mt-3">
-              PRODUCTION AND DISTRIBUTION
-            </h1>
-
-            {/* Actual content about production */}
-            <p className="max-w-4xl text-sm sm:text-xl">
-              Zigo Technology (Private) Limited follows a{" "}
-              <span className="font-bold">direct distribution </span>
-              model to supply its brands{" "}
-              <span className="font-bold">OMS, Onesam, and Xpert </span>across
-              Sri Lanka. Instead of using an in-house distribution team, the
-              company partners with a trusted courier service, to ensure fast
-              and reliable product delivery nationwide.
-            </p>
           </div>
         </div>
 
         {/* Manufacturing Plant Section */}
-        <div className="bg-white py-8 sm:py-12 mt-2 md:mt-20">
+        <div className="bg-white py-8 sm:py-12 mt-2 md:mt-6">
           {/* Breadcrumb */}
           <nav
             aria-label="Breadcrumb"
@@ -85,7 +78,7 @@ export default function Production() {
           </nav>
 
           {/* Decorative Line */}
-          <div className="container mx-auto px-4 sm:px-8 md:px-16">
+          <div className="container mx-auto px-4 sm:px-8 md:px-16 mt-4">
             <div className="h-[3px] w-full bg-blue-200 rounded-md"></div>
           </div>
 
@@ -105,7 +98,7 @@ export default function Production() {
                   {/* Manufacturing Plant Image */}
                   <div className="w-full relative h-48 sm:h-64 md:h-96 mb-8 sm:mb-10">
                     <Image
-                      src="/images/manufaturing_plant.jpg"
+                      src="/images/Manufacturing plant x.png"
                       alt="Zigo Technology Manufacturing Plant"
                       fill
                       className="object-cover rounded-lg shadow-lg"
@@ -185,12 +178,22 @@ export default function Production() {
                               PRODUCTION & MANUFACTURING
                             </h4>
                             <p className="text-gray-600 text-sm sm:text-base leading-relaxed mb-3">
-                              Depending on the industry and product, the
-                              production process includes casting & molding for
-                              metal, plastic, and rubber components, machining &
-                              cutting for precision shaping, and assembly &
-                              fabrication combining components using welding,
-                              soldering, or adhesives.
+                              Production and manufacturing processes vary based
+                              on the industry and type of product but generally
+                              involve several key stages. Casting and molding
+                              are commonly used to form materials such as metal,
+                              plastic, and rubber into specific shapes through
+                              techniques like injection molding or die casting.
+                              Machining and cutting involve precision shaping of
+                              materials using equipment such as CNC machines,
+                              lathes, or milling tools to achieve accurate
+                              dimensions. Assembly and fabrication combine
+                              individual components into a finished product
+                              using methods like welding, soldering, riveting,
+                              or adhesives, depending on the product
+                              requirements. Each stage plays a vital role in
+                              ensuring quality, functionality, and efficiency in
+                              the final output.
                             </p>
                           </div>
                         </div>
@@ -286,49 +289,78 @@ export default function Production() {
           <div className=" h-[3px] w-11/12 bg-blue-200 rounded-md mx-auto"></div>
         </div>
         {/* Distribution Network Section */}
-        <div className="py-8 sm:py-12">
-          <div className="container mx-auto px-4 sm:px-8 md:px-16">
-            <div className="py-4">
-              <div className="flex flex-col items-start">
-                <div className="mb-6 sm:mb-5 w-full">
-                  <h2 className="text-blue-900 text-2xl sm:text-3xl md:text-4xl font-extrabold text-start">
-                    DISTRIBUTION NETWORK
-                  </h2>
-                  <div className="w-24 h-1 rounded-full"></div>
-                </div>
-
-                {/* Distribution Content */}
-                <div className="w-full">
-                  {/* Introduction */}
-                  <div className="mb-8">
-                    <div className="rounded-xl p-6">
-                      <p className="text-gray-700 text-base sm:text-lg leading-relaxed">
-                        Zigo Technology (Private) Limited operates through an
-                        innovative <strong>direct distribution </strong>
-                        model, delivering our premium brands{" "}
-                        <strong>OMS, Onesam, and Xpert </strong>
-                        efficiently across Sri Lanka. By partnering with trusted
-                        courier services instead of maintaining in-house
-                        distribution teams, we ensure rapid, reliable product
-                        delivery to every corner of the nation.
-                      </p>
-                    </div>
+        <div id="distribution" className="py-8 sm:py-12">
+          <div className="py-8 sm:py-12">
+            <div className="container mx-auto px-4 sm:px-8 md:px-16">
+              <div className="py-4">
+                <div className="flex flex-col items-start">
+                  <div className="mb-6 sm:mb-5 w-full">
+                    <h2 className="text-blue-900 text-2xl sm:text-3xl md:text-4xl font-extrabold text-start">
+                      LOCAL DISTRIBUTION
+                    </h2>
+                    <div className="w-24 h-1 rounded-full"></div>
                   </div>
 
-                  {/* How Distribution Works */}
+                  {/* Distribution Content */}
+                  <div className="w-full">
+                    {/* Introduction */}
+                    <div className="mb-8">
+                      <div className="rounded-xl">
+                        <p className="text-gray-700 text-base sm:text-lg leading-relaxed">
+                          Zigo Technology (Private) Limited operates through an
+                          innovative <strong>direct distribution </strong>
+                          model, delivering our premium brands{" "}
+                          <strong>OMS, Onesam, and Xpert </strong>
+                          efficiently across Sri Lanka. By partnering with
+                          trusted courier services instead of maintaining
+                          in-house distribution teams, we ensure rapid, reliable
+                          product delivery to every corner of the nation.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="flex flex-col items-center">
+            <div className="h-[3px] w-11/12 bg-blue-200 rounded-md mx-auto"></div>
+          </div>
+
+          {/* Local Distribution Section - Improved Layout */}
+          <div className="py-8 sm:py-12 md:py-16">
+            <div className="container mx-auto px-4 sm:px-8 md:px-16">
+              <div className="mb-8 sm:mb-12">
+                <h2 className="text-blue-900 text-2xl sm:text-3xl md:text-4xl font-bold text-start">
+                  DISTRIBUTION NETWORK
+                </h2>
+              </div>
+
+              {/* Main Content Layout */}
+              <div className="flex flex-col xl:flex-row gap-8 xl:gap-12 items-start">
+                {/* Map Section - Now larger and more prominent */}
+                <div className="w-full xl:w-3/5 order-2 xl:order-1">
+                  <div className="bg-white rounded-2xl p-4 sm:p-6 shadow-lg border border-gray-200">
+                    <SriLankaMap />
+                  </div>
+                </div>
+
+                {/* How Distribution Works Section - Repositioned */}
+                <div className="w-full xl:w-2/5 order-1 xl:order-2">
                   <div className="mb-6">
-                    <h3 className="text-blue-900 text-xl sm:text-2xl font-bold mb-6 flex items-center gap-3">
+                    <h3 className="text-blue-900 text-xl sm:text-2xl md:text-3xl font-bold mb-6 flex items-center gap-3">
                       HOW THE DISTRIBUTION WORKS
                     </h3>
 
-                    {/* Grid container for distribution steps */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8">
+                    {/* Vertical layout for distribution steps on larger screens */}
+                    <div className="space-y-4 sm:space-y-6">
                       {/* Direct Order Processing */}
-                      <div className="bg-white rounded-xl p-5 sm:p-6 shadow-md border-l-4 border-green-600 hover:shadow-lg transition-all duration-300 hover:scale-105 hover:bg-green-100 cursor-pointer">
-                        <div className="flex items-start gap-4">
-                          <div className="flex-shrink-0 w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center">
+                      <div className="bg-white rounded-xl p-4 sm:p-5 shadow-md border-l-4 border-green-600 hover:shadow-lg transition-all duration-300 hover:scale-105 hover:bg-green-50 cursor-pointer">
+                        <div className="flex items-start gap-3 sm:gap-4">
+                          <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-green-600 text-white rounded-full flex items-center justify-center">
                             <svg
-                              className="w-6 h-6"
+                              className="w-5 h-5 sm:w-6 sm:h-6"
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -342,10 +374,10 @@ export default function Production() {
                             </svg>
                           </div>
                           <div className="flex-grow">
-                            <h4 className="font-bold text-green-800 text-base sm:text-lg mb-2 uppercase">
+                            <h4 className="font-bold text-green-800 text-sm sm:text-base md:text-lg mb-2 uppercase">
                               Direct Order Processing
                             </h4>
-                            <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
+                            <p className="text-gray-600 text-xs sm:text-sm md:text-base leading-relaxed">
                               Retailers, mobile accessory shops, and corporate
                               clients place orders directly with{" "}
                               <strong>Zigo Technology.</strong> This eliminates
@@ -357,11 +389,11 @@ export default function Production() {
                       </div>
 
                       {/* Courier-Based Delivery */}
-                      <div className="bg-white rounded-xl p-5 sm:p-6 shadow-md border-l-4 border-blue-600 hover:shadow-lg transition-all duration-300 hover:scale-105 hover:bg-blue-100 cursor-pointer">
-                        <div className="flex items-start gap-4">
-                          <div className="flex-shrink-0 w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center">
+                      <div className="bg-white rounded-xl p-4 sm:p-5 shadow-md border-l-4 border-blue-600 hover:shadow-lg transition-all duration-300 hover:scale-105 hover:bg-blue-50 cursor-pointer">
+                        <div className="flex items-start gap-3 sm:gap-4">
+                          <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-blue-600 text-white rounded-full flex items-center justify-center">
                             <svg
-                              className="w-6 h-6"
+                              className="w-5 h-5 sm:w-6 sm:h-6"
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -375,10 +407,10 @@ export default function Production() {
                             </svg>
                           </div>
                           <div className="flex-grow">
-                            <h4 className="font-bold text-blue-800 text-base sm:text-lg mb-2 uppercase">
+                            <h4 className="font-bold text-blue-800 text-sm sm:text-base md:text-lg mb-2 uppercase">
                               Courier-Based Delivery
                             </h4>
-                            <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
+                            <p className="text-gray-600 text-xs sm:text-sm md:text-base leading-relaxed">
                               Once an order is processed, the products are
                               dispatched using <strong>courier service.</strong>{" "}
                               This enables efficient and timely delivery to
@@ -391,11 +423,11 @@ export default function Production() {
                       </div>
 
                       {/* Centralized Inventory */}
-                      <div className="bg-white rounded-xl p-5 sm:p-6 shadow-md border-l-4 border-purple-600 hover:shadow-lg transition-all duration-300 hover:scale-105 hover:bg-purple-100 cursor-pointer">
-                        <div className="flex items-start gap-4">
-                          <div className="flex-shrink-0 w-12 h-12 bg-purple-600 text-white rounded-full flex items-center justify-center">
+                      <div className="bg-white rounded-xl p-4 sm:p-5 shadow-md border-l-4 border-purple-600 hover:shadow-lg transition-all duration-300 hover:scale-105 hover:bg-purple-50 cursor-pointer">
+                        <div className="flex items-start gap-3 sm:gap-4">
+                          <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-purple-600 text-white rounded-full flex items-center justify-center">
                             <svg
-                              className="w-6 h-6"
+                              className="w-5 h-5 sm:w-6 sm:h-6"
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -409,10 +441,10 @@ export default function Production() {
                             </svg>
                           </div>
                           <div className="flex-grow">
-                            <h4 className="font-bold text-purple-800 text-base sm:text-lg mb-2 uppercase">
+                            <h4 className="font-bold text-purple-800 text-sm sm:text-base md:text-lg mb-2 uppercase">
                               Centralized Inventory Management
                             </h4>
-                            <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
+                            <p className="text-gray-600 text-xs sm:text-sm md:text-base leading-relaxed">
                               Zigo Technology operates a{" "}
                               <strong>centralized warehouse </strong>
                               where all OMS, Onesam, and Xpert products are
@@ -425,11 +457,11 @@ export default function Production() {
                       </div>
 
                       {/* Retail and Corporate Supply */}
-                      <div className="bg-white rounded-xl p-5 sm:p-6 shadow-md border-l-4 border-amber-600 hover:shadow-lg transition-all duration-300 hover:scale-105 hover:bg-amber-100 cursor-pointer">
-                        <div className="flex items-start gap-4">
-                          <div className="flex-shrink-0 w-12 h-12 bg-amber-600 text-white rounded-full flex items-center justify-center">
+                      <div className="bg-white rounded-xl p-4 sm:p-5 shadow-md border-l-4 border-amber-600 hover:shadow-lg transition-all duration-300 hover:scale-105 hover:bg-amber-50 cursor-pointer">
+                        <div className="flex items-start gap-3 sm:gap-4">
+                          <div className="flex-shrink-0 w-10 h-10 sm:w-12 sm:h-12 bg-amber-600 text-white rounded-full flex items-center justify-center">
                             <svg
-                              className="w-6 h-6"
+                              className="w-5 h-5 sm:w-6 sm:h-6"
                               fill="none"
                               stroke="currentColor"
                               viewBox="0 0 24 24"
@@ -443,10 +475,10 @@ export default function Production() {
                             </svg>
                           </div>
                           <div className="flex-grow">
-                            <h4 className="font-bold text-amber-800 text-base sm:text-lg mb-2 uppercase">
+                            <h4 className="font-bold text-amber-800 text-sm sm:text-base md:text-lg mb-2 uppercase">
                               Retail & Corporate Supply
                             </h4>
-                            <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
+                            <p className="text-gray-600 text-xs sm:text-sm md:text-base leading-relaxed">
                               The company directly supplies{" "}
                               <strong>
                                 mobile accessory shops, repair centers, and
@@ -460,107 +492,197 @@ export default function Production() {
                         </div>
                       </div>
                     </div>
-
-                    <div className="mt-8">
-                      <p className="text-gray-700 text-base sm:text-lg leading-relaxed">
-                        <strong>By leveraging logistics network,</strong> Zigo
-                        Technology ensures
-                        <strong> fast, secure, and efficient </strong> product
-                        distribution across Sri Lanka while maintaining complete
-                        control over its supply chain.
-                      </p>
-                    </div>
                   </div>
                 </div>
               </div>
+              <div className="mt-6 sm:mt-8">
+                <p className="text-gray-700 text-sm sm:text-base md:text-lg leading-relaxed">
+                  <strong>By leveraging logistics network,</strong> Zigo
+                  Technology ensures
+                  <strong> fast, secure, and efficient </strong> product
+                  distribution across Sri Lanka while maintaining complete
+                  control over its supply chain.
+                </p>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="flex flex-col items-center">
-          <div className="h-[3px] w-11/12 bg-blue-200 rounded-md mx-auto"></div>
-        </div>
-
-        {/* Local Distribution Section */}
-        <div className="py-4 sm:py-6 md:py-8 relative">
-          <div className="container mx-auto px-4 sm:px-8 md:px-16">
-            <div className="mb-4 sm:mb-8">
-              <h2 className="text-blue-900 text-2xl sm:text-3xl md:text-4xl font-bold text-start">
-                LOCAL DISTRIBUTION
-              </h2>
-            </div>
-
-            <div className="relative w-full h-64 sm:h-96 md:h-128">
-              <Image
-                src="/images/distribution_network.jpg"
-                alt="Sri Lanka Distribution Network Map"
-                fill
-              />
-            </div>
+          <div className="flex flex-col items-center">
+            <div className="mt-8 h-[3px] w-11/12 bg-blue-200 rounded-md mx-auto"></div>
           </div>
-        </div>
-        <div className="flex flex-col items-center">
-          <div className="mt-8 h-[3px] w-11/12 bg-blue-200 rounded-md mx-auto"></div>
-        </div>
-        {/* International Distribution Section */}
-        <div className="py-4 sm:py-6 md:py-8 relative">
-          <div className="container mx-auto px-4 sm:px-8 md:px-16">
-            <div className="mb-4 sm:mb-8">
-              <h2 className="text-blue-900 text-2xl sm:text-3xl md:text-4xl font-bold text-start">
-                INTERNATIONAL DISTRIBUTION
-              </h2>
-            </div>
 
-            <div className="flex flex-col md:flex-row gap-8">
-              {/* Middle East Map */}
-              <div className="relative w-full md:w-1/2 h-64 sm:h-80 md:h-96">
-                <Image
-                  src="/images/international_distribution.png"
-                  alt="International Distribution Network Map"
-                  fill
-                  className="object-contain"
-                />
+          {/* International Distribution Section */}
+          <div className="py-4 sm:py-6 md:py-8 relative">
+            <div className="container mx-auto px-4 sm:px-8 md:px-16">
+              <div className="mb-6 sm:mb-8">
+                <h2 className="text-blue-900 text-2xl sm:text-3xl md:text-4xl font-bold text-start mb-4">
+                  INTERNATIONAL DISTRIBUTION
+                </h2>
               </div>
 
-              {/* Country information */}
-              <div className="w-full md:w-1/2 space-y-6 sm:space-y-8">
-                {/* UAE Section */}
+              {/* Content Section */}
+              <div className="mb-8 space-y-6">
+                {/* Introduction Paragraph */}
                 <div>
-                  <h3 className="text-xl sm:text-2xl md:text-3xl text-gray-500 font-medium mb-2 sm:mb-4">
-                    UAE
-                  </h3>
-                  <p className="text-gray-600 text-sm sm:text-base">
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                    sed diam nonummy nibh euismod tincidunt ut laoreet dolore
-                    magna aliquam erat volutpat. Ut wisi enim ad minim veniam,
-                    quis nostrud exerci tation ullamcorper suscipit lobortis
-                    nisl ut aliquip ex ea commodo consequat. Duis autem vel eum
-                    iriure dolor in hendrerit in vulputate velit esse molestie
-                    consequat, vel illum dolore eu feugiat nulla facilisi at
-                    vero eros et accumsan et iusto odio dignissim qui blandit
-                    praesent luptatum zzril delenit augue duis dolore te feugait
-                    nulla facilisi.
+                  <p className="text-gray-700 text-base sm:text-lg leading-relaxed mb-4">
+                    As part of its ongoing global expansion strategy,{" "}
+                    <strong>Zigo Technology (Private) Limited</strong> has
+                    established a strong international distribution presence to
+                    serve key markets outside Sri Lanka. Our international
+                    operations are designed to reflect the same commitment to
+                    quality, innovation, and customer service that define our
+                    local operations.
                   </p>
                 </div>
 
-                {/* Oman Section */}
-                <div>
-                  <h3 className="text-xl sm:text-2xl md:text-3xl text-gray-500 font-medium mb-2 sm:mb-4">
-                    Oman
+                {/* UAE Operations Section */}
+                <div className="bg-white rounded-xl p-6 sm:p-8 shadow-lg border border-gray-200">
+                  <h3 className="text-xl sm:text-2xl font-bold text-blue-900 mb-4 flex items-center gap-3">
+                    <span className="w-8 h-8 bg-blue-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                      UAE
+                    </span>
+                    United Arab Emirates Operations
                   </h3>
-                  <p className="text-gray-600 text-sm sm:text-base">
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
-                    sed diam nonummy nibh euismod tincidunt ut laoreet dolore
-                    magna aliquam erat volutpat. Ut wisi enim ad minim veniam,
-                    quis nostrud exerci tation ullamcorper suscipit lobortis
-                    nisl ut aliquip ex ea commodo consequat. Duis autem vel eum
-                    iriure dolor in hendrerit in vulputate velit esse molestie
-                    consequat, vel illum dolore eu feugiat nulla facilisi at
-                    vero eros et accumsan et iusto odio dignissim qui blandit
-                    praesent luptatum zzril delenit augue duis dolore te feugait
-                    nulla facilisi. Lorem ipsum dolor sit amet, cons ectetuer
-                    adipiscing elit, sed diam nonummy
+
+                  <p className="text-gray-700 text-base sm:text-lg leading-relaxed mb-6">
+                    In the United Arab Emirates, we operate through two key
+                    entities:
                   </p>
+
+                  {/* Entity Cards */}
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div className="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg p-5 border-l-4 border-blue-600">
+                      <h4 className="font-bold text-blue-900 text-lg mb-2">
+                        Hikma Al Nur Trading LLC
+                      </h4>
+                      <p className="text-blue-700 font-medium mb-2 items-center">
+                        <svg
+                          className="w-4 h-4 inline mr-2"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                        Dubai
+                      </p>
+                    </div>
+
+                    <div className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-lg p-5 border-l-4 border-green-600">
+                      <h4 className="font-bold text-green-900 text-lg mb-2">
+                        Nur Al Hikma Trading LLC
+                      </h4>
+                      <p className="text-green-700 font-medium mb-2 items-center">
+                        <svg
+                          className="w-4 h-4 inline mr-2"
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                            clipRule="evenodd"
+                          />
+                        </svg>
+                        Abu Dhabi
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Operations Description */}
+                  <div className="space-y-4">
+                    <p className="text-gray-700 text-base sm:text-lg leading-relaxed">
+                      These two companies function as our official distribution
+                      arms in the UAE, facilitating the import, distribution,
+                      and retail of Zigo Technology’s complete range of
+                      products, including:
+                    </p>
+
+                    {/* Product Categories */}
+                    <div className="flex flex-wrap gap-3 my-4">
+                      <span className="bg-blue-100 text-blue-800 px-4 py-2 rounded-full text-sm font-medium">
+                        Mobile Phone Accessories
+                      </span>
+                      <span className="bg-green-100 text-green-800 px-4 py-2 rounded-full text-sm font-medium">
+                        Electronic Parts
+                      </span>
+                      <span className="bg-purple-100 text-purple-800 px-4 py-2 rounded-full text-sm font-medium">
+                        Consumer Tech Solutions
+                      </span>
+                    </div>
+
+                    <p className="text-gray-700 text-base sm:text-lg leading-relaxed">
+                      Both{" "}
+                      <strong className="text-blue-900">Hikma Al Nur</strong>{" "}
+                      and{" "}
+                      <strong className="text-green-900">Nur Al Hikma</strong>{" "}
+                      replicate the distribution model used successfully in Sri
+                      Lanka, ensuring efficient delivery, brand representation,
+                      and after-sales support throughout the UAE.
+                    </p>
+                  </div>
+                </div>
+
+                {/* Strategic Benefits Section */}
+                <div>
+                  <p className="text-gray-700 text-base sm:text-lg leading-relaxed">
+                    Through these strategic channels, Zigo Technology continues
+                    to strengthen its presence in the Middle East, leveraging
+                    local expertise and infrastructure while maintaining
+                    centralized oversight and quality assurance from its Sri
+                    Lankan headquarters. This network allows us to serve
+                    wholesale and retail markets more effectively and grow the
+                    footprint of our leading brands—
+                    <strong>OMS, ONESAM,</strong> and
+                    <strong> XPERT</strong>—internationally.
+                  </p>
+                </div>
+              </div>
+
+              {/* Map and Information Section */}
+              <div className="flex flex-col lg:flex-row gap-8 mt-8">
+                <div className="w-full lg:w-1/2">
+                  <UaeMap />
+                </div>
+
+                {/* Country Information - Improved */}
+                <div className="w-full lg:w-1/2 space-y-6 sm:space-y-8">
+                  {/* Dubai Section */}
+                  <div className="bg-white rounded-xl p-6 shadow-lg border-l-4 border-blue-600">
+                    <h3 className="text-xl sm:text-2xl font-bold text-blue-900 mb-4 flex items-center gap-3">
+                      <span className="text-2xl">🏙️</span>
+                      Dubai Operations
+                    </h3>
+                    <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
+                      Dubai serves as our primary commercial hub in the UAE,
+                      leveraging the emirate&apos;s position as a global trading
+                      center. Through Hikma Al Nur Trading LLC, we maintain
+                      strong relationships with retailers, distributors, and
+                      corporate clients across the region. Our Dubai operations
+                      focus on rapid market penetration and establishing brand
+                      presence in this highly competitive technology market.
+                    </p>
+                  </div>
+
+                  {/* Abu Dhabi Section */}
+                  <div className="bg-white rounded-xl p-6 shadow-lg border-l-4 border-green-600">
+                    <h3 className="text-xl sm:text-2xl font-bold text-green-900 mb-4 flex items-center gap-3">
+                      <span className="text-2xl">🏛️</span>
+                      Abu Dhabi Operations
+                    </h3>
+                    <p className="text-gray-700 text-sm sm:text-base leading-relaxed">
+                      Abu Dhabi operations through Nur Al Hikma Trading LLC
+                      focus on serving the capital emirate and surrounding
+                      regions. This strategic location allows us to cater to
+                      government contracts, corporate clients, and retail
+                      networks throughout the region. Our Abu Dhabi presence
+                      ensures comprehensive coverage and strengthens our
+                      position in the UAE&apos;s growing technology sector.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
